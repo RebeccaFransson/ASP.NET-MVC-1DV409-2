@@ -7,17 +7,22 @@ using Newtonsoft.Json.Linq;
 
 namespace Weather.Domain
 {
-    class City
+    public class City
     {
 
         public City(JToken data)
         {
+            weather = new List<WeatherForDay>(5);
             name = data["city"]["name"].ToString();
             lon = float.Parse(data["city"]["coord"]["lon"].ToString());
             lat = float.Parse(data["city"]["coord"]["lat"].ToString());
             foreach (var day in data["list"].ToList())
             {
-                weather.Add(new WeatherForDay());
+                WeatherForDay hej = new WeatherForDay
+                {
+                    tempDay = int.Parse(day["temp"]["day"].ToString())
+                };
+                weather.Add(hej);
             }
         }
 

@@ -1,4 +1,4 @@
-﻿{
+﻿[{
   "city": {
     "id": 2702261,
     "name": "Kalmar",
@@ -10,32 +10,34 @@
     "population": 0
   },
   "cod": "200",
-  "message": 0.0609,
+  "message": 0.0089,
   "cnt": 1,
-  "list": 
-  [
+  "list": [
+
     {
-      "dt": 1450432800,
+      "dt": 1450692000,
       "temp": {
-        "day": 10,
-        "min": 8.96,
-        "max": 10.29,
-        "night": 9.14,
-        "eve": 9.15,
-        "morn": 10
+        "day": 9,
+        "min": 7.63,
+        "max": 9,
+        "night": 7.63,
+        "eve": 8.58,
+        "morn": 9
       },
-      "pressure": 1012.7,
-      "humidity": 95,
+      "pressure": 1011.77,
+      "humidity": 71,
       "weather": [
         {
-          "id": 500,
-          "main": "Rain",
-          "description": "light rain",
-          "icon": "10d"
+          "id": 802,
+          "main": "Clouds",
+          "description": "scattered clouds",
+          "icon": "03d"
         }
       ],
-      "speed": 4.22,
-      "deg": 241,
-      "clouds": 44
+      "speed": 6.09,
+      "deg": 250,
+      "clouds": 36
     }
-  ]}
+  ]
+
+}]

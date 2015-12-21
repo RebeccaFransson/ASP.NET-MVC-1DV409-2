@@ -15,7 +15,7 @@ namespace Weather.MVC.Controllers
             var webbService = new OpenWeatherWebService();
             var city = webbService.GetForecastByCity("kalmar");
 
-            return View();
+            return View(city);
         }
     }
 }

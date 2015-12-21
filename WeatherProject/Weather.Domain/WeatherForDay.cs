@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Weather.Domain
 {
-    class WeatherForDay
+    public struct WeatherForDay
     {
-
+        public int tempDay;
     }
 }

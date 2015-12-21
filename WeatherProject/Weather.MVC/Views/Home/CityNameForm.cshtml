@@ -1,0 +1,11 @@
+﻿
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+
+    @Html.LabelFor(model => )<br />
+            @Html.EditorFor(model => )
+            <input type="submit" value="Skicka" />
+}

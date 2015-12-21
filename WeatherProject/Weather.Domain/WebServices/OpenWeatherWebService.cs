@@ -9,13 +9,12 @@ using System.Threading.Tasks;
 
 namespace Weather.Domain.WebServices
 {
-    class OpenWeatherWebService
+     public class OpenWeatherWebService
     {
         public IEnumerable<City> GetForecastByCity(string name)
         {
             string rawJson;
-            
-            using (var reader = new StreamReader("Weather.Domain/WebServices/AppData/WeatherTest.json"))//HttpContext.Current.Server.MapPath(
+            using (var reader = new StreamReader(HttpContext.Current.Server.MapPath("~/App_Data/WeatherTest.json")))//HttpContext.Current.Server.MapPath(
             {
                 rawJson = reader.ReadToEnd();
             }
