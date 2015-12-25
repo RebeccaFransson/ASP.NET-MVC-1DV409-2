@@ -12,23 +12,24 @@ namespace Weather.Domain
 
         public City(JToken data)
         {
-            weather = new List<WeatherForDay>(5);
+            weather = new List<WeatherByDay>(5);
             name = data["city"]["name"].ToString();
             lon = float.Parse(data["city"]["coord"]["lon"].ToString());
             lat = float.Parse(data["city"]["coord"]["lat"].ToString());
             foreach (var day in data["list"].ToList())
             {
-                WeatherForDay hej = new WeatherForDay
-                {
-                    tempDay = int.Parse(day["temp"]["day"].ToString())
+                WeatherByDay cat = new WeatherByDay {
+                    TempDay = float.Parse(day["temp"]["day"].ToString()),
+                    TempNight = float.Parse(day["temp"]["night"].ToString()),
+                    Weather = day["weather"][0]["description"].ToString()
                 };
-                weather.Add(hej);
+                weather.Add(cat);
             }
         }
 
         public string name { get; set; }
         public float lon { get; set; }
         public float lat { get; set; }
-        public List<WeatherForDay> weather { get; set; }
+        public List<WeatherByDay> weather { get; set; }
     }
 }

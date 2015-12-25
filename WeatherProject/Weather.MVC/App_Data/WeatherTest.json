@@ -1,43 +1,95 @@
-﻿[{
-  "city": {
-    "id": 2702261,
-    "name": "Kalmar",
-    "coord": {
-      "lon": 16.361629,
-      "lat": 56.661572
-    },
-    "country": "SE",
-    "population": 0
-  },
-  "cod": "200",
-  "message": 0.0089,
-  "cnt": 1,
-  "list": [
-
+﻿[
+  {
+    "city": 
     {
-      "dt": 1450692000,
-      "temp": {
-        "day": 9,
-        "min": 7.63,
-        "max": 9,
-        "night": 7.63,
-        "eve": 8.58,
-        "morn": 9
+      "id": 2702261,
+      "name": "Kalmar",
+      "coord": {
+        "lon": 16.361629,
+        "lat": 56.661572
       },
-      "pressure": 1011.77,
-      "humidity": 71,
-      "weather": [
-        {
-          "id": 802,
-          "main": "Clouds",
-          "description": "scattered clouds",
-          "icon": "03d"
-        }
-      ],
-      "speed": 6.09,
-      "deg": 250,
-      "clouds": 36
-    }
-  ]
-
-}]
+      "country": "SE",
+      "population": 0
+    },
+    "cod": "200",
+    "message": 0.0088,
+    "cnt": 3,
+    "list": [
+      {
+        "dt": 1451037600,
+        "temp": {
+          "day": 6,
+          "min": 5.92,
+          "max": 6.8,
+          "night": 6.8,
+          "eve": 5.92,
+          "morn": 6
+        },
+        "pressure": 1016.19,
+        "humidity": 66,
+        "weather": [
+          {
+            "id": 802,
+            "main": "Clouds",
+            "description": "scattered clouds",
+            "icon": "03d"
+          }
+        ],
+        "speed": 7.52,
+        "deg": 256,
+        "clouds": 36
+      },
+      {
+        "dt": 1451124000,
+        "temp": {
+          "day": 5.31,
+          "min": 1.32,
+          "max": 5.73,
+          "night": 1.32,
+          "eve": 4.1,
+          "morn": 5.73
+        },
+        "pressure": 1019.14,
+        "humidity": 69,
+        "weather": [
+          {
+            "id": 500,
+            "main": "Rain",
+            "description": "light rain",
+            "icon": "10d"
+          }
+        ],
+        "speed": 2.79,
+        "deg": 275,
+        "clouds": 76,
+        "rain": 1.14
+      },
+      {
+        "dt": 1451210400,
+        "temp": {
+          "day": 2.16,
+          "min": 0.5,
+          "max": 8.2,
+          "night": 3.96,
+          "eve": 8.2,
+          "morn": 0.5
+        },
+        "pressure": 1018.6,
+        "humidity": 97,
+        "weather": [
+          {
+            "id": 601,
+            "main": "Snow",
+            "description": "snow",
+            "icon": "13d"
+          }
+        ],
+        "speed": 3.71,
+        "deg": 121,
+        "clouds": 92,
+        "rain": 2.68,
+        "snow": 3.68
+      }
+    ]
+  }
+]
