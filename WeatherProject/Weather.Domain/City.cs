@@ -22,7 +22,7 @@ namespace Weather.Domain
                     TempDay = float.Parse(day["temp"]["day"].ToString()),
                     TempNight = float.Parse(day["temp"]["night"].ToString()),
                     Weather = day["weather"][0]["description"].ToString(),
-                    WeatherIcon = day["weather"][0]["icon"].ToString()
+                    WeatherIcon = day["weather"][0]["icon"].ToString()+".png"
                 };
                 weather.Add(newWeather);
             }

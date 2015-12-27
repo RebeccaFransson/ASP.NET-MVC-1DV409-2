@@ -126,15 +126,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\pictures\01d.png" />
-    <Content Include="App_Data\pictures\02d.png" />
-    <Content Include="App_Data\pictures\03d.png" />
-    <Content Include="App_Data\pictures\04d.png" />
-    <Content Include="App_Data\pictures\09d.png" />
-    <Content Include="App_Data\pictures\10d.png" />
-    <Content Include="App_Data\pictures\11d.png" />
-    <Content Include="App_Data\pictures\13d.png" />
-    <Content Include="App_Data\pictures\50d.png" />
+    <Content Include="Content\pictures\01d.png" />
+    <Content Include="Content\pictures\02d.png" />
+    <Content Include="Content\pictures\03d.png" />
+    <Content Include="Content\pictures\04d.png" />
+    <Content Include="Content\pictures\09d.png" />
+    <Content Include="Content\pictures\10d.png" />
+    <Content Include="Content\pictures\11d.png" />
+    <Content Include="Content\pictures\13d.png" />
+    <Content Include="Content\pictures\50d.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />

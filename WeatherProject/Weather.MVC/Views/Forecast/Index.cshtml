@@ -36,13 +36,10 @@
                         <div class="weather">@Html.DisplayFor(modelItem => key.Weather)</div>
                         <div class="day">@Html.DisplayFor(modelItem => key.TempDay)°</div>
                         <div class="night">@Html.DisplayFor(modelItem => key.TempNight)°</div>
+                        <img src="~/Content/pictures/@Html.DisplayFor(modelItem => key.WeatherIcon)" />
                     </td>
                 }
-
-
             }
-
-
             </tr>
            
 
