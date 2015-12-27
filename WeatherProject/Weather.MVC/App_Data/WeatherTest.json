@@ -1,7 +1,7 @@
 ﻿[
   {
-    "city": 
-    {
+    
+    "city": {
       "id": 2702261,
       "name": "Kalmar",
       "coord": {
@@ -12,70 +12,21 @@
       "population": 0
     },
     "cod": "200",
-    "message": 0.0088,
-    "cnt": 3,
+    "message": 0.0085,
+    "cnt": 5,
     "list": [
-      {
-        "dt": 1451037600,
-        "temp": {
-          "day": 6,
-          "min": 5.92,
-          "max": 6.8,
-          "night": 6.8,
-          "eve": 5.92,
-          "morn": 6
-        },
-        "pressure": 1016.19,
-        "humidity": 66,
-        "weather": [
-          {
-            "id": 802,
-            "main": "Clouds",
-            "description": "scattered clouds",
-            "icon": "03d"
-          }
-        ],
-        "speed": 7.52,
-        "deg": 256,
-        "clouds": 36
-      },
-      {
-        "dt": 1451124000,
-        "temp": {
-          "day": 5.31,
-          "min": 1.32,
-          "max": 5.73,
-          "night": 1.32,
-          "eve": 4.1,
-          "morn": 5.73
-        },
-        "pressure": 1019.14,
-        "humidity": 69,
-        "weather": [
-          {
-            "id": 500,
-            "main": "Rain",
-            "description": "light rain",
-            "icon": "10d"
-          }
-        ],
-        "speed": 2.79,
-        "deg": 275,
-        "clouds": 76,
-        "rain": 1.14
-      },
       {
         "dt": 1451210400,
         "temp": {
-          "day": 2.16,
-          "min": 0.5,
-          "max": 8.2,
-          "night": 3.96,
-          "eve": 8.2,
-          "morn": 0.5
+          "day": 4,
+          "min": 4,
+          "max": 6.8,
+          "night": 6.21,
+          "eve": 6.49,
+          "morn": 4
         },
-        "pressure": 1018.6,
-        "humidity": 97,
+        "pressure": 1021.08,
+        "humidity": 91,
         "weather": [
           {
             "id": 601,
@@ -84,11 +35,107 @@
             "icon": "13d"
           }
         ],
-        "speed": 3.71,
-        "deg": 121,
+        "speed": 4.58,
+        "deg": 131,
         "clouds": 92,
-        "rain": 2.68,
-        "snow": 3.68
+        "rain": 2.46,
+        "snow": 2.13
+      },
+      {
+        "dt": 1451296800,
+        "temp": {
+          "day": 3.17,
+          "min": 0.53,
+          "max": 4.77,
+          "night": 0.53,
+          "eve": 2.32,
+          "morn": 4.77
+        },
+        "pressure": 1035.41,
+        "humidity": 95,
+        "weather": [
+          {
+            "id": 500,
+            "main": "Rain",
+            "description": "light rain",
+            "icon": "10d"
+          }
+        ],
+        "speed": 3.76,
+        "deg": 56,
+        "clouds": 0
+      },
+      {
+        "dt": 1451383200,
+        "temp": {
+          "day": 1.58,
+          "min": 0.32,
+          "max": 2.67,
+          "night": 0.32,
+          "eve": 1.24,
+          "morn": 0.79
+        },
+        "pressure": 1046.66,
+        "humidity": 81,
+        "weather": [
+          {
+            "id": 800,
+            "main": "Clear",
+            "description": "sky is clear",
+            "icon": "01d"
+          }
+        ],
+        "speed": 4.03,
+        "deg": 141,
+        "clouds": 0
+      },
+      {
+        "dt": 1451469600,
+        "temp": {
+          "day": 0.6,
+          "min": -0.55,
+          "max": 1.85,
+          "night": -0.55,
+          "eve": 0.75,
+          "morn": -0.09
+        },
+        "pressure": 1049.09,
+        "humidity": 84,
+        "weather": [
+          {
+            "id": 802,
+            "main": "Clouds",
+            "description": "scattered clouds",
+            "icon": "03d"
+          }
+        ],
+        "speed": 3.46,
+        "deg": 173,
+        "clouds": 44
+      },
+      {
+        "dt": 1451556000,
+        "temp": {
+          "day": -0.17,
+          "min": -0.75,
+          "max": 1.51,
+          "night": -0.67,
+          "eve": 0.24,
+          "morn": -0.61
+        },
+        "pressure": 1043.71,
+        "humidity": 77,
+        "weather": [
+          {
+            "id": 801,
+            "main": "Clouds",
+            "description": "few clouds",
+            "icon": "02d"
+          }
+        ],
+        "speed": 3.56,
+        "deg": 169,
+        "clouds": 12
       }
     ]
   }

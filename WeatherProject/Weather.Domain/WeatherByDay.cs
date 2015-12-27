@@ -11,5 +11,6 @@ namespace Weather.Domain
         public float TempDay { get; set; }
         public float TempNight { get; set; }
         public string Weather { get; set; }
+        public string WeatherIcon { get; set; }
     }
 }

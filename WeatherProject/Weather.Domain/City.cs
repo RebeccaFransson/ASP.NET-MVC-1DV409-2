@@ -18,12 +18,13 @@ namespace Weather.Domain
             lat = float.Parse(data["city"]["coord"]["lat"].ToString());
             foreach (var day in data["list"].ToList())
             {
-                WeatherByDay cat = new WeatherByDay {
+                WeatherByDay newWeather = new WeatherByDay {
                     TempDay = float.Parse(day["temp"]["day"].ToString()),
                     TempNight = float.Parse(day["temp"]["night"].ToString()),
-                    Weather = day["weather"][0]["description"].ToString()
+                    Weather = day["weather"][0]["description"].ToString(),
+                    WeatherIcon = day["weather"][0]["icon"].ToString()
                 };
-                weather.Add(cat);
+                weather.Add(newWeather);
             }
         }
 

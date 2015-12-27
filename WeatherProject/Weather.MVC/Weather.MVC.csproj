@@ -126,6 +126,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\pictures\01d.png" />
+    <Content Include="App_Data\pictures\02d.png" />
+    <Content Include="App_Data\pictures\03d.png" />
+    <Content Include="App_Data\pictures\04d.png" />
+    <Content Include="App_Data\pictures\09d.png" />
+    <Content Include="App_Data\pictures\10d.png" />
+    <Content Include="App_Data\pictures\11d.png" />
+    <Content Include="App_Data\pictures\13d.png" />
+    <Content Include="App_Data\pictures\50d.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -158,14 +167,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\CityNameForm.cshtml" />
+    <Content Include="Views\Forecast\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Forecast\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

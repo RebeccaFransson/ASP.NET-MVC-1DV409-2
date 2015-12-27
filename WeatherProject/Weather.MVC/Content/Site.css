@@ -22,3 +22,25 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+
+
+
+table, td, th {
+    border: black solid 1px;
+}
+th{
+    background-color: #808080;
+}
+.day{
+    background-color: #ffeb7c;
+    width: 50%;
+    float:left;
+}
+.night{
+    background-color: #080d2c;
+    color: white;
+    width: 50%;
+    float:left;
+}
