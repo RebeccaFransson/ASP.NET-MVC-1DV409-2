@@ -5,45 +5,46 @@
 }
 
 <div class="inputCity">
-    
+    <h1>Weather</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.EditorFor(model => model, new { htmlAttributes = new { @class = "form-control", maxlength = "50" } })
+        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+    }
+
 </div>
 
 <div class="weatherResult">
     @if (Model != null)
     {
-        <table>
-            
-            <tr>
+        foreach (var item in Model)
+        {
+            <table>
 
-                <th>dag 1</th>
+                <tr>
+                    @foreach (var key in item.weatherDays)
+                    {
+                        <th>@Html.DisplayFor(modelItem => key)</th>
+                    }
+                </tr>
 
-                <th>dag 2</th>
-
-                <th>dag 3</th>
-
-                <th>dag 4</th>
-
-                <th>dag 5</th>
-
-            </tr>
-
-            <tr>
-            @foreach (var item in Model)
-            {
-                foreach (var key in item.weather)
-                {
+                <tr>
+                    @foreach (var key in item.weather)
+                    {
                     <td>
                         <div class="weather">@Html.DisplayFor(modelItem => key.Weather)</div>
+                        <img src="~/Content/pictures/@Html.DisplayFor(modelItem => key.WeatherIcon)" />
                         <div class="day">@Html.DisplayFor(modelItem => key.TempDay)°</div>
                         <div class="night">@Html.DisplayFor(modelItem => key.TempNight)°</div>
-                        <img src="~/Content/pictures/@Html.DisplayFor(modelItem => key.WeatherIcon)" />
                     </td>
-                }
-            }
-            </tr>
-           
-
-        </table>
+                    }
+                </tr>
+            </table>
+        }
     }
 </div>
+
+
 

@@ -12,8 +12,8 @@ namespace Weather.MVC.Controllers
         // GET: Forecast
         public ActionResult Index()
         {
-            var webbService = new OpenWeatherWebService();
-            var city = webbService.GetForecastByCity("kalmar");
+            OpenWeatherWebService webbService = new OpenWeatherWebService();
+            IEnumerable<Domain.City> city = webbService.GetForecastByCity("kalmar");
 
             return View(city);
         }

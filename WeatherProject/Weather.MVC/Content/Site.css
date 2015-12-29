@@ -26,12 +26,19 @@ textarea {
 
 
 
-
+.weatherResult {
+    font-size: 19px;
+}
 table, td, th {
     border: black solid 1px;
+    text-align: center;
 }
 th{
-    background-color: #808080;
+    background-color: #d3d3d3;
+    padding: 17px
+}
+.weather{
+        padding: 11px;
 }
 .day{
     background-color: #ffeb7c;
@@ -43,4 +50,8 @@ th{
     color: white;
     width: 50%;
     float:left;
+}
+.weatherResult img{
+    width: 69px;
+    height: 69px;
 }
