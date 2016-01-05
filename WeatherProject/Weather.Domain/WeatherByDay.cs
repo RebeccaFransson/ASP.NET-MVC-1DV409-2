@@ -9,25 +9,29 @@ namespace Weather.Domain
 {
     public partial class WeatherByDay
     {
-        /*FIXA DETTA NÄR EN DATABAS ÄR TILLAGDs
+        
         public WeatherByDay()
         {
             // Empty!
         }
 
-        public WeatherByDay(JToken cityToken, City city)
+        public WeatherByDay(JToken weatherToken, City city)
         {
-            TempDay = float.Parse(cityToken["temp"]["day"].ToString());
-            TempNight = float.Parse(cityToken["temp"]["night"].ToString());
-            Weather = day["weather"][0]["description"].ToString();
-            WeatherIcon = day["weather"][0]["icon"].ToString() + ".png";
+            CityID = city.CityID;
+            TempDay = float.Parse(weatherToken["temp"]["day"].ToString());
+            TempNight = float.Parse(weatherToken["temp"]["night"].ToString());
+            Weather = weatherToken["weather"][0]["description"].ToString();
+            WeatherIcon = weatherToken["weather"][0]["icon"].ToString() + ".png";
+            City = city;
+
+            //weatherToken.Value();
         }
-        */
         
+        /*
         public float TempDay { get; set; }
         public float TempNight { get; set; }
         public string Weather { get; set; }
         public string WeatherIcon { get; set; }
-        
+        */
     }
 }

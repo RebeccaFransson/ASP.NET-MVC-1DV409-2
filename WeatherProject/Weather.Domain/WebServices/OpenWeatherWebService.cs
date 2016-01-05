@@ -10,9 +10,9 @@ using System.Net;
 
 namespace Weather.Domain.WebServices
 {
-     public class OpenWeatherWebService
+     public class OpenWeatherWebService : IOpenWeatherWebService
     {
-        public IEnumerable<City> GetForecastByCity(string cityName)
+        public JArray GetRawJson(string name)
         {
             /*
             string rawJson;
@@ -22,12 +22,9 @@ namespace Weather.Domain.WebServices
             }
             return JArray.Parse(rawJson).Select(t => new City(t)).ToList();
             */
-
-
-            
             var rawJson = string.Empty;
 
-            var requestUriString = String.Format("http://api.openweathermap.org/data/2.5/forecast/daily?q={0}&mode=json&units=metric&cnt=5&appid=2de143494c0b295cca9337e1e96b00e0", cityName);
+            var requestUriString = String.Format("http://api.openweathermap.org/data/2.5/forecast/daily?q={0}&mode=json&units=metric&cnt=5&appid=2de143494c0b295cca9337e1e96b00e0", name);
             var request = (HttpWebRequest)WebRequest.Create(requestUriString);
             //request.Headers.Add("Authorization", String.Format("{0} {1}", accessToken.Type, accessToken.Token));
             request.Method = "GET";
@@ -37,9 +34,18 @@ namespace Weather.Domain.WebServices
             {
                 rawJson = "[" + reader.ReadToEnd() + "]";
             }
+            return JArray.Parse(rawJson);
+        }
+        public IEnumerable<WeatherByDay> GetCityWeather(City city)
+        {
             //Eftersom JArray vill ha rawJson i en array lägger i den i en.
-            return JArray.Parse(rawJson).Select(w => new City(w)).ToList();
+            return GetRawJson(city.Name).Select(w => new WeatherByDay(w, city)).ToList();//kanske skcika med city? om jag får ta på den först
             
+        }
+
+        public City GetCity(string cityName)
+        {
+            return GetRawJson(cityName).Select(w => new City(w)).SingleOrDefault();
         }
     }
 }

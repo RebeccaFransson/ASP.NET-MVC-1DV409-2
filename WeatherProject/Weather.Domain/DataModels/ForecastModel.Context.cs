@@ -39,13 +39,22 @@ namespace Weather.Domain.DataModels
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_City_Delete", cityIDParameter);
         }
     
-        public virtual ObjectResult<string> usp_City_GetById(Nullable<int> cityID)
+        public virtual ObjectResult<usp_City_GetById_Result> usp_City_GetById(Nullable<int> cityID)
         {
             var cityIDParameter = cityID.HasValue ?
                 new ObjectParameter("CityID", cityID) :
                 new ObjectParameter("CityID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("usp_City_GetById", cityIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_City_GetById_Result>("usp_City_GetById", cityIDParameter);
+        }
+    
+        public virtual ObjectResult<usp_City_GetByName_Result> usp_City_GetByName(Nullable<int> name)
+        {
+            var nameParameter = name.HasValue ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_City_GetByName_Result>("usp_City_GetByName", nameParameter);
         }
     
         public virtual ObjectResult<Nullable<decimal>> usp_City_Insert(string name, Nullable<double> lat, Nullable<double> lon)
@@ -93,6 +102,15 @@ namespace Weather.Domain.DataModels
                 new ObjectParameter("WeatherID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_WeatherByDay_Delete", weatherIDParameter);
+        }
+    
+        public virtual ObjectResult<string> usp_WeatherByDay_GetById(Nullable<int> weatherID)
+        {
+            var weatherIDParameter = weatherID.HasValue ?
+                new ObjectParameter("WeatherID", weatherID) :
+                new ObjectParameter("WeatherID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("usp_WeatherByDay_GetById", weatherIDParameter);
         }
     
         public virtual ObjectResult<usp_WeatherByDay_GetWeatherByCityId_Result> usp_WeatherByDay_GetWeatherByCityId(Nullable<int> cityID)

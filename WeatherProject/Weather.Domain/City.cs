@@ -7,10 +7,18 @@ using Newtonsoft.Json.Linq;
 
 namespace Weather.Domain
 {
-    public class City
+    public partial class City
     {
+        public City(JToken cityToken)
+            : this()
+        {
+            Name = cityToken["city"]["name"].ToString();
+            Lon = float.Parse(cityToken["city"]["coord"]["lon"].ToString());
+            Lat = float.Parse(cityToken["city"]["coord"]["lat"].ToString());
+        }
 
-        public City(JToken data)
+
+        /*public City(JToken data)
         {
             weather = new List<WeatherByDay>(5);
             weatherDays = new List<string>(5);
@@ -49,5 +57,6 @@ namespace Weather.Domain
         public List<string> weatherDays { get; set; }
 
         public string[] days = new string[7] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+        */
     }
 }

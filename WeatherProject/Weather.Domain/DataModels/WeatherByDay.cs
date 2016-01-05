@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Weather.Domain.DataModels
+namespace Weather.Domain
 {
     using System;
     using System.Collections.Generic;

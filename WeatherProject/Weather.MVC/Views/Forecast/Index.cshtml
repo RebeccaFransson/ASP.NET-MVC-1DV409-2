@@ -1,5 +1,5 @@
-﻿@model List<Weather.Domain.City>
-@{
+﻿@model Weather.MVC.ViewModels.ForecastViewModel
+@{ 
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -9,40 +9,24 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-
-        @Html.EditorFor(model => model, new { htmlAttributes = new { @class = "form-control", maxlength = "50" } })
-        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+        
+        @Html.LabelFor(model => model.CityName)
+        @Html.EditorFor(model => model.CityName, new { htmlAttributes = new { @class = "form-control", maxlength = "50" } })
+        @Html.ValidationMessageFor(model => model.CityName, String.Empty, new { @class = "text-danger" })
+        <input type="submit" value="send" />
     }
 
 </div>
 
 <div class="weatherResult">
-    @if (Model != null)
+
+    @if (Model != null && Model.HasWeather)
     {
-        foreach (var item in Model)
-        {
-            <table>
+        @Html.DisplayFor(m => m.WeatherDays)
+    }
 
-                <tr>
-                    @foreach (var key in item.weatherDays)
-                    {
-                        <th>@Html.DisplayFor(modelItem => key)</th>
-                    }
-                </tr>
-
-                <tr>
-                    @foreach (var key in item.weather)
-                    {
-                    <td>
-                        <div class="weather">@Html.DisplayFor(modelItem => key.Weather)</div>
-                        <img src="~/Content/pictures/@Html.DisplayFor(modelItem => key.WeatherIcon)" />
-                        <div class="day">@Html.DisplayFor(modelItem => key.TempDay)°</div>
-                        <div class="night">@Html.DisplayFor(modelItem => key.TempNight)°</div>
-                    </td>
-                    }
-                </tr>
-            </table>
-        }
+    @section scripts {
+        @Scripts.Render("~/bundles/jqueryval")
     }
 </div>
 

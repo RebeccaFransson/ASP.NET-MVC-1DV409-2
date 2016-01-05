@@ -47,6 +47,9 @@
         <Function Name="usp_City_GetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="appSchema">
           <Parameter Name="CityID" Type="int" Mode="In" />
         </Function>
+        <Function Name="usp_City_GetByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="appSchema">
+          <Parameter Name="Name" Type="int" Mode="In" />
+        </Function>
         <Function Name="usp_City_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="appSchema">
           <Parameter Name="Name" Type="nvarchar" Mode="In" />
           <Parameter Name="Lat" Type="float" Mode="In" />
@@ -59,6 +62,9 @@
           <Parameter Name="Lon" Type="float" Mode="In" />
         </Function>
         <Function Name="usp_WeatherByDay_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="appSchema">
+          <Parameter Name="WeatherID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_WeatherByDay_GetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="appSchema">
           <Parameter Name="WeatherID" Type="int" Mode="In" />
         </Function>
         <Function Name="usp_WeatherByDay_GetWeatherByCityId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="appSchema">
@@ -139,8 +145,11 @@
           <FunctionImport Name="usp_City_Delete">
             <Parameter Name="CityID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="usp_City_GetById" ReturnType="Collection(String)">
+          <FunctionImport Name="usp_City_GetById" ReturnType="Collection(dv409_rf222cz_weatherModel.usp_City_GetById_Result)">
             <Parameter Name="CityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_City_GetByName" ReturnType="Collection(dv409_rf222cz_weatherModel.usp_City_GetByName_Result)">
+            <Parameter Name="Name" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_City_Insert" ReturnType="Collection(Decimal)">
             <Parameter Name="Name" Mode="In" Type="String" />
@@ -154,6 +163,9 @@
             <Parameter Name="Lon" Mode="In" Type="Double" />
           </FunctionImport>
           <FunctionImport Name="usp_WeatherByDay_Delete">
+            <Parameter Name="WeatherID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_WeatherByDay_GetById" ReturnType="Collection(String)">
             <Parameter Name="WeatherID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_WeatherByDay_GetWeatherByCityId" ReturnType="Collection(dv409_rf222cz_weatherModel.usp_WeatherByDay_GetWeatherByCityId_Result)">
@@ -174,11 +186,24 @@
             <Parameter Name="WeatherIcon" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="usp_City_GetById_Result">
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="Double" Name="Lat" Nullable="false" />
+          <Property Type="Double" Name="Lon" Nullable="false" />
+          <Property Type="DateTime" Name="TimeStamp" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_City_GetByName_Result">
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="Double" Name="Lat" Nullable="false" />
+          <Property Type="Double" Name="Lon" Nullable="false" />
+          <Property Type="DateTime" Name="TimeStamp" Nullable="false" />
+        </ComplexType>
         <ComplexType Name="usp_WeatherByDay_GetWeatherByCityId_Result">
           <Property Type="Double" Name="TempDay" Nullable="false" />
           <Property Type="Double" Name="TempNight" Nullable="false" />
           <Property Type="String" Name="Weather" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="WeatherIcon" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="TimeUpdated" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -239,21 +264,34 @@
                 <DeleteFunction FunctionName="dv409_rf222cz_weatherModel.Store.usp_WeatherByDay_Delete">
                   <ScalarProperty Name="WeatherID" ParameterName="WeatherID" />
                 </DeleteFunction>
-                <UpdateFunction FunctionName="dv409_rf222cz_weatherModel.Store.usp_WeatherByDay_Update">
-                  <ScalarProperty Name="WeatherIcon" ParameterName="WeatherIcon" Version="Current" />
-                  <ScalarProperty Name="Weather" ParameterName="Weather" Version="Current" />
-                  <ScalarProperty Name="TempNight" ParameterName="TempNight" Version="Current" />
-                  <ScalarProperty Name="TempDay" ParameterName="TempDay" Version="Current" />
-                  <ScalarProperty Name="WeatherID" ParameterName="WeatherID" Version="Current" />
-                </UpdateFunction>
               </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="usp_City_Delete" FunctionName="dv409_rf222cz_weatherModel.Store.usp_City_Delete" />
-          <FunctionImportMapping FunctionImportName="usp_City_GetById" FunctionName="dv409_rf222cz_weatherModel.Store.usp_City_GetById" />
+          <FunctionImportMapping FunctionImportName="usp_City_GetById" FunctionName="dv409_rf222cz_weatherModel.Store.usp_City_GetById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dv409_rf222cz_weatherModel.usp_City_GetById_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Lon" ColumnName="Lon" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_City_GetByName" FunctionName="dv409_rf222cz_weatherModel.Store.usp_City_GetByName">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dv409_rf222cz_weatherModel.usp_City_GetByName_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Lon" ColumnName="Lon" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_City_Insert" FunctionName="dv409_rf222cz_weatherModel.Store.usp_City_Insert" />
           <FunctionImportMapping FunctionImportName="usp_City_Update" FunctionName="dv409_rf222cz_weatherModel.Store.usp_City_Update" />
           <FunctionImportMapping FunctionImportName="usp_WeatherByDay_Delete" FunctionName="dv409_rf222cz_weatherModel.Store.usp_WeatherByDay_Delete" />
+          <FunctionImportMapping FunctionImportName="usp_WeatherByDay_GetById" FunctionName="dv409_rf222cz_weatherModel.Store.usp_WeatherByDay_GetById" />
           <FunctionImportMapping FunctionImportName="usp_WeatherByDay_GetWeatherByCityId" FunctionName="dv409_rf222cz_weatherModel.Store.usp_WeatherByDay_GetWeatherByCityId">
             <ResultMapping>
               <ComplexTypeMapping TypeName="dv409_rf222cz_weatherModel.usp_WeatherByDay_GetWeatherByCityId_Result">
@@ -261,6 +299,7 @@
                 <ScalarProperty Name="TempNight" ColumnName="TempNight" />
                 <ScalarProperty Name="Weather" ColumnName="Weather" />
                 <ScalarProperty Name="WeatherIcon" ColumnName="WeatherIcon" />
+                <ScalarProperty Name="TimeUpdated" ColumnName="TimeUpdated" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

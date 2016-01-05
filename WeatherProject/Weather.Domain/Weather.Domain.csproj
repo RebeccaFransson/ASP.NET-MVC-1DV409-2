@@ -30,11 +30,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -66,32 +75,28 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ForecastModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DataModels\usp_City_GetById_Result.cs">
+      <DependentUpon>ForecastModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModels\usp_City_GetByName_Result.cs">
+      <DependentUpon>ForecastModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataModels\usp_WeatherByDay_GetWeatherByCityId_Result.cs">
       <DependentUpon>ForecastModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataModels\WeatherByDay.cs">
       <DependentUpon>ForecastModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="IOpenWeatherService.cs" />
+    <Compile Include="OpenWeatherService.cs" />
+    <Compile Include="OpenWeatherServiceBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ForecastRepository.cs" />
+    <Compile Include="Repositories\ForecastRepositoryBase.cs" />
+    <Compile Include="Repositories\IForecastRepository.cs" />
     <Compile Include="WeatherByDay.cs" />
+    <Compile Include="WebServices\IOpenWeatherWebService.cs" />
     <Compile Include="WebServices\OpenWeatherWebService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
-    <EntityDeploy Include="DataModels\ForecastModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ForecastModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="DataModels\ForecastModel.edmx.diagram">
-      <DependentUpon>ForecastModel.edmx</DependentUpon>
-    </None>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataModels\ForecastModel.Context.tt">
@@ -104,6 +109,22 @@
       <DependentUpon>ForecastModel.edmx</DependentUpon>
       <LastGenOutput>ForecastModel.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="DataModels\ForecastModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ForecastModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DataModels\ForecastModel.edmx.diagram">
+      <DependentUpon>ForecastModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -17,5 +17,6 @@ namespace Weather.Domain.DataModels
         public double TempNight { get; set; }
         public string Weather { get; set; }
         public string WeatherIcon { get; set; }
+        public System.DateTime TimeUpdated { get; set; }
     }
 }
