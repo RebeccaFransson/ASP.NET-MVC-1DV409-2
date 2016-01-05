@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dv409_rf222cz_weatherModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lat" Type="float" Nullable="false" />
+          <Property Name="Lon" Type="float" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime2" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WeatherByDay">
+          <Key>
+            <PropertyRef Name="WeatherID" />
+          </Key>
+          <Property Name="WeatherID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityID" Type="int" Nullable="false" />
+          <Property Name="TempDay" Type="float" Nullable="false" />
+          <Property Name="TempNight" Type="float" Nullable="false" />
+          <Property Name="Weather" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="WeatherIcon" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TimeUpdated" Type="datetime2" Precision="0" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_WeatherByDay_City">
+          <End Role="City" Type="Self.City" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WeatherByDay" Type="Self.WeatherByDay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="WeatherByDay">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="usp_City_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="appSchema">
+          <Parameter Name="CityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_City_GetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="appSchema">
+          <Parameter Name="CityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_City_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="appSchema">
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Lat" Type="float" Mode="In" />
+          <Parameter Name="Lon" Type="float" Mode="In" />
+        </Function>
+        <Function Name="usp_City_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="appSchema">
+          <Parameter Name="CityID" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Lat" Type="float" Mode="In" />
+          <Parameter Name="Lon" Type="float" Mode="In" />
+        </Function>
+        <Function Name="usp_WeatherByDay_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="appSchema">
+          <Parameter Name="CityID" Type="int" Mode="In" />
+          <Parameter Name="TempDay" Type="float" Mode="In" />
+          <Parameter Name="TempNight" Type="float" Mode="In" />
+          <Parameter Name="Weather" Type="nvarchar" Mode="In" />
+          <Parameter Name="WeatherIcon" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_WeatherByDay_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="appSchema">
+          <Parameter Name="WeatherID" Type="int" Mode="In" />
+          <Parameter Name="TempDay" Type="float" Mode="In" />
+          <Parameter Name="TempNight" Type="float" Mode="In" />
+          <Parameter Name="Weather" Type="nvarchar" Mode="In" />
+          <Parameter Name="WeatherIcon" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="dv409_rf222cz_weatherModelStoreContainer">
+          <EntitySet Name="City" EntityType="Self.City" Schema="appSchema" store:Type="Tables" />
+          <EntitySet Name="WeatherByDay" EntityType="Self.WeatherByDay" Schema="appSchema" store:Type="Tables" />
+          <AssociationSet Name="FK_WeatherByDay_City" Association="Self.FK_WeatherByDay_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="WeatherByDay" EntitySet="WeatherByDay" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dv409_rf222cz_weatherModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lat" Type="Double" Nullable="false" />
+          <Property Name="Lon" Type="Double" Nullable="false" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="WeatherByDay" Relationship="Self.FK_WeatherByDay_City" FromRole="City" ToRole="WeatherByDay" />
+        </EntityType>
+        <EntityType Name="WeatherByDay">
+          <Key>
+            <PropertyRef Name="WeatherID" />
+          </Key>
+          <Property Name="WeatherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityID" Type="Int32" Nullable="false" />
+          <Property Name="TempDay" Type="Double" Nullable="false" />
+          <Property Name="TempNight" Type="Double" Nullable="false" />
+          <Property Name="Weather" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WeatherIcon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TimeUpdated" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="City" Relationship="Self.FK_WeatherByDay_City" FromRole="WeatherByDay" ToRole="City" />
+        </EntityType>
+        <Association Name="FK_WeatherByDay_City">
+          <End Role="City" Type="Self.City" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WeatherByDay" Type="Self.WeatherByDay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="WeatherByDay">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WeatherDataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="WeatherByDay" EntityType="Self.WeatherByDay" />
+          <AssociationSet Name="FK_WeatherByDay_City" Association="Self.FK_WeatherByDay_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="WeatherByDay" EntitySet="WeatherByDay" />
+          </AssociationSet>
+          <FunctionImport Name="usp_City_Delete">
+            <Parameter Name="CityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_City_GetById">
+            <Parameter Name="CityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_City_Insert">
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Lat" Mode="In" Type="Double" />
+            <Parameter Name="Lon" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="usp_City_Update">
+            <Parameter Name="CityID" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Lat" Mode="In" Type="Double" />
+            <Parameter Name="Lon" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="usp_WeatherByDay_Insert">
+            <Parameter Name="CityID" Mode="In" Type="Int32" />
+            <Parameter Name="TempDay" Mode="In" Type="Double" />
+            <Parameter Name="TempNight" Mode="In" Type="Double" />
+            <Parameter Name="Weather" Mode="In" Type="String" />
+            <Parameter Name="WeatherIcon" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_WeatherByDay_Update">
+            <Parameter Name="WeatherID" Mode="In" Type="Int32" />
+            <Parameter Name="TempDay" Mode="In" Type="Double" />
+            <Parameter Name="TempNight" Mode="In" Type="Double" />
+            <Parameter Name="Weather" Mode="In" Type="String" />
+            <Parameter Name="WeatherIcon" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dv409_rf222cz_weatherModelStoreContainer" CdmEntityContainer="WeatherDataEntities">
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="dv409_rf222cz_weatherModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Lon" ColumnName="Lon" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeatherByDay">
+            <EntityTypeMapping TypeName="dv409_rf222cz_weatherModel.WeatherByDay">
+              <MappingFragment StoreEntitySet="WeatherByDay">
+                <ScalarProperty Name="WeatherID" ColumnName="WeatherID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="TempDay" ColumnName="TempDay" />
+                <ScalarProperty Name="TempNight" ColumnName="TempNight" />
+                <ScalarProperty Name="Weather" ColumnName="Weather" />
+                <ScalarProperty Name="WeatherIcon" ColumnName="WeatherIcon" />
+                <ScalarProperty Name="TimeUpdated" ColumnName="TimeUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_City_Delete" FunctionName="dv409_rf222cz_weatherModel.Store.usp_City_Delete" />
+          <FunctionImportMapping FunctionImportName="usp_City_GetById" FunctionName="dv409_rf222cz_weatherModel.Store.usp_City_GetById" />
+          <FunctionImportMapping FunctionImportName="usp_City_Insert" FunctionName="dv409_rf222cz_weatherModel.Store.usp_City_Insert" />
+          <FunctionImportMapping FunctionImportName="usp_City_Update" FunctionName="dv409_rf222cz_weatherModel.Store.usp_City_Update" />
+          <FunctionImportMapping FunctionImportName="usp_WeatherByDay_Insert" FunctionName="dv409_rf222cz_weatherModel.Store.usp_WeatherByDay_Insert" />
+          <FunctionImportMapping FunctionImportName="usp_WeatherByDay_Update" FunctionName="dv409_rf222cz_weatherModel.Store.usp_WeatherByDay_Update" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -13,7 +13,7 @@ namespace Weather.MVC.Controllers
         public ActionResult Index()
         {
             OpenWeatherWebService webbService = new OpenWeatherWebService();
-            IEnumerable<Domain.City> city = webbService.GetForecastByCity("kalmar");
+            IEnumerable<Domain.City> city = webbService.GetForecastByCity("malmö");
 
             return View(city);
         }

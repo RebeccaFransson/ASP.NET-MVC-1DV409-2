@@ -36,6 +36,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,16 +48,62 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="City.cs" />
+    <Compile Include="DataModels\City.cs">
+      <DependentUpon>ForecastModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModels\ForecastModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ForecastModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModels\ForecastModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ForecastModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModels\ForecastModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ForecastModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataModels\usp_WeatherByDay_GetWeatherByCityId_Result.cs">
+      <DependentUpon>ForecastModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModels\WeatherByDay.cs">
+      <DependentUpon>ForecastModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WeatherByDay.cs" />
     <Compile Include="WebServices\OpenWeatherWebService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataModels\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="DataModels\ForecastModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ForecastModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DataModels\ForecastModel.edmx.diagram">
+      <DependentUpon>ForecastModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataModels\ForecastModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ForecastModel.edmx</DependentUpon>
+      <LastGenOutput>ForecastModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataModels\ForecastModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ForecastModel.edmx</DependentUpon>
+      <LastGenOutput>ForecastModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
