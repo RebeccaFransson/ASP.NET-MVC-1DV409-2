@@ -39,15 +39,6 @@ namespace Weather.Domain.DataModels
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_City_Delete", cityIDParameter);
         }
     
-        public virtual ObjectResult<usp_City_GetById_Result> usp_City_GetById(Nullable<int> cityID)
-        {
-            var cityIDParameter = cityID.HasValue ?
-                new ObjectParameter("CityID", cityID) :
-                new ObjectParameter("CityID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_City_GetById_Result>("usp_City_GetById", cityIDParameter);
-        }
-    
         public virtual ObjectResult<usp_City_GetByName_Result> usp_City_GetByName(Nullable<int> name)
         {
             var nameParameter = name.HasValue ?
@@ -57,7 +48,7 @@ namespace Weather.Domain.DataModels
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_City_GetByName_Result>("usp_City_GetByName", nameParameter);
         }
     
-        public virtual ObjectResult<Nullable<decimal>> usp_City_Insert(string name, Nullable<double> lat, Nullable<double> lon)
+        public virtual ObjectResult<Nullable<decimal>> usp_City_Insert(string name, Nullable<double> lat, Nullable<double> lon, Nullable<System.DateTime> timeStamp)
         {
             var nameParameter = name != null ?
                 new ObjectParameter("Name", name) :
@@ -71,10 +62,14 @@ namespace Weather.Domain.DataModels
                 new ObjectParameter("Lon", lon) :
                 new ObjectParameter("Lon", typeof(double));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("usp_City_Insert", nameParameter, latParameter, lonParameter);
+            var timeStampParameter = timeStamp.HasValue ?
+                new ObjectParameter("TimeStamp", timeStamp) :
+                new ObjectParameter("TimeStamp", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("usp_City_Insert", nameParameter, latParameter, lonParameter, timeStampParameter);
         }
     
-        public virtual int usp_City_Update(Nullable<int> cityID, string name, Nullable<double> lat, Nullable<double> lon)
+        public virtual int usp_City_Update(Nullable<int> cityID, string name, Nullable<double> lat, Nullable<double> lon, Nullable<System.DateTime> timeStamp)
         {
             var cityIDParameter = cityID.HasValue ?
                 new ObjectParameter("CityID", cityID) :
@@ -92,7 +87,11 @@ namespace Weather.Domain.DataModels
                 new ObjectParameter("Lon", lon) :
                 new ObjectParameter("Lon", typeof(double));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_City_Update", cityIDParameter, nameParameter, latParameter, lonParameter);
+            var timeStampParameter = timeStamp.HasValue ?
+                new ObjectParameter("TimeStamp", timeStamp) :
+                new ObjectParameter("TimeStamp", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_City_Update", cityIDParameter, nameParameter, latParameter, lonParameter, timeStampParameter);
         }
     
         public virtual int usp_WeatherByDay_Delete(Nullable<int> weatherID)
@@ -113,13 +112,13 @@ namespace Weather.Domain.DataModels
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("usp_WeatherByDay_GetById", weatherIDParameter);
         }
     
-        public virtual ObjectResult<usp_WeatherByDay_GetWeatherByCityId_Result> usp_WeatherByDay_GetWeatherByCityId(Nullable<int> cityID)
+        public virtual int usp_WeatherByDay_GetWeatherByCityId(Nullable<int> cityID)
         {
             var cityIDParameter = cityID.HasValue ?
                 new ObjectParameter("CityID", cityID) :
                 new ObjectParameter("CityID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_WeatherByDay_GetWeatherByCityId_Result>("usp_WeatherByDay_GetWeatherByCityId", cityIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_WeatherByDay_GetWeatherByCityId", cityIDParameter);
         }
     
         public virtual ObjectResult<Nullable<decimal>> usp_WeatherByDay_Insert(Nullable<int> cityID, Nullable<double> tempDay, Nullable<double> tempNight, string weather, string weatherIcon)

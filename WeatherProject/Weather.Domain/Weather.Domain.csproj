@@ -75,13 +75,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ForecastModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\usp_City_GetById_Result.cs">
-      <DependentUpon>ForecastModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataModels\usp_City_GetByName_Result.cs">
-      <DependentUpon>ForecastModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataModels\usp_WeatherByDay_GetWeatherByCityId_Result.cs">
       <DependentUpon>ForecastModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataModels\WeatherByDay.cs">
@@ -99,18 +93,6 @@
     <Compile Include="WebServices\OpenWeatherWebService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataModels\ForecastModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ForecastModel.edmx</DependentUpon>
-      <LastGenOutput>ForecastModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DataModels\ForecastModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ForecastModel.edmx</DependentUpon>
-      <LastGenOutput>ForecastModel.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
@@ -125,6 +107,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataModels\ForecastModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ForecastModel.edmx</DependentUpon>
+      <LastGenOutput>ForecastModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataModels\ForecastModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ForecastModel.edmx</DependentUpon>
+      <LastGenOutput>ForecastModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

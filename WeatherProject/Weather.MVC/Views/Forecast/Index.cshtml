@@ -22,7 +22,11 @@
 
     @if (Model != null && Model.HasWeather)
     {
-        @Html.DisplayFor(m => m.WeatherDays)
+        foreach (var weather in Model.WeatherDays)
+        {
+            @Html.DisplayFor(modelItem => weather.TempDay)
+        }
+
     }
 
     @section scripts {

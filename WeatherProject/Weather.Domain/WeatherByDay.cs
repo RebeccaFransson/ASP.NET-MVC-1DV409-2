@@ -17,9 +17,10 @@ namespace Weather.Domain
 
         public WeatherByDay(JToken weatherToken, City city)
         {
+            TempDay = double.Parse(weatherToken["temp"]["day"].ToString());
             CityID = city.CityID;
-            TempDay = float.Parse(weatherToken["temp"]["day"].ToString());
-            TempNight = float.Parse(weatherToken["temp"]["night"].ToString());
+            //TempDay = double.Parse(weatherToken["temp"]["day"].ToString());
+            TempNight = double.Parse(weatherToken["temp"]["night"].ToString());
             Weather = weatherToken["weather"][0]["description"].ToString();
             WeatherIcon = weatherToken["weather"][0]["icon"].ToString() + ".png";
             City = city;

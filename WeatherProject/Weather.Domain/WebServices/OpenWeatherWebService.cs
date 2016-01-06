@@ -39,8 +39,7 @@ namespace Weather.Domain.WebServices
         public IEnumerable<WeatherByDay> GetCityWeather(City city)
         {
             //Eftersom JArray vill ha rawJson i en array lägger i den i en.
-            return GetRawJson(city.Name).Select(w => new WeatherByDay(w, city)).ToList();//kanske skcika med city? om jag får ta på den först
-            
+            return GetRawJson(city.Name).Select(w => new WeatherByDay(w["list"][0], city)).ToList();
         }
 
         public City GetCity(string cityName)

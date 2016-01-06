@@ -11,7 +11,7 @@ namespace Weather.Domain.DataModels
 {
     using System;
     
-    public partial class usp_City_GetById_Result
+    public partial class usp_City_GetByName_Result
     {
         public string Name { get; set; }
         public double Lat { get; set; }
