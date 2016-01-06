@@ -22,10 +22,28 @@
 
     @if (Model != null && Model.HasWeather)
     {
-        foreach (var weather in Model.WeatherDays)
-        {
-            @Html.DisplayFor(modelItem => weather.TempDay)
-        }
+        <table style="width:100%">
+            <tr>
+                @foreach (var day in Model.WeekDays)
+                {
+                    <th>
+                        @Html.DisplayFor(modelItem => day)
+                    </th>
+                }
+            </tr>
+            <tr>
+                @foreach (var weather in Model.WeatherDays)
+                {
+                    <td>
+                        <div class="weather">@Html.DisplayFor(modelItem => weather.Weather)</div>
+                        <img src="~/Content/pictures/@Html.DisplayFor(modelItem => weather.WeatherIcon)" />
+                        <div class="day">@Html.DisplayFor(modelItem => weather.TempDay)°</div>
+                        <div class="night">@Html.DisplayFor(modelItem => weather.TempNight)°</div>
+                    </td>
+                }
+            </tr>
+        </table>
+        
 
     }
 

@@ -38,8 +38,25 @@ namespace Weather.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    model.WeekDays = new List<string>(5);
+
                     model.City = _service.GetCity(model.CityName);
                     _service.RefreshWeather(model.City);
+
+
+                    string[] days = new string[7] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+                    int daynr = Array.IndexOf(days, DateTime.Now.DayOfWeek.ToString());
+                    while (model.WeekDays.Count() < 5)//antal dagar vi vill blicka framåt med
+                    {
+                        if (daynr >= days.Count())
+                        {
+                            daynr = 0;
+                        }
+                        model.WeekDays.Add(days[daynr]);
+                        daynr++;
+                    }
+
+                    
                 }
                 /*
                 OpenWeatherWebService webbService = new OpenWeatherWebService();

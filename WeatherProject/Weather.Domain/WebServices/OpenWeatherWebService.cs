@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net;
+using Newtonsoft.Json;
 
 namespace Weather.Domain.WebServices
 {
      public class OpenWeatherWebService : IOpenWeatherWebService
     {
-        public JArray GetRawJson(string name)
+        public string GetRawJson(string name)
         {
             /*
             string rawJson;
@@ -33,18 +34,30 @@ namespace Weather.Domain.WebServices
             using (var reader = new StreamReader(response.GetResponseStream()))
             {
                 rawJson = "[" + reader.ReadToEnd() + "]";
+                //rawJson = reader.ReadToEnd();
             }
-            return JArray.Parse(rawJson);
+            return rawJson;
         }
-        public IEnumerable<WeatherByDay> GetCityWeather(City city)
+        public List<WeatherByDay> GetCityWeather(City city)
         {
+            //IEnumerable<WeatherByDay> weatherList = new IEnumerable<WeatherByDay>(5);
+            List<WeatherByDay> weatherList = new List<WeatherByDay>(5);
+            //foreach(var day in w["list"].ToList())
             //Eftersom JArray vill ha rawJson i en array lägger i den i en.
-            return GetRawJson(city.Name).Select(w => new WeatherByDay(w["list"][0], city)).ToList();
+            //var hej = GetRawJson(city.Name);
+            var token = JArray.Parse(GetRawJson(city.Name))[0];
+            var trendsArray = token.Children<JProperty>().FirstOrDefault(x => x.Name == "list").Value;
+            //trendsArray.Select(w => new WeatherByDay(w, city));
+            foreach (var item in trendsArray.Children())
+            {
+                weatherList.Add(new WeatherByDay(item, city));
+            }
+            return weatherList;
         }
 
         public City GetCity(string cityName)
         {
-            return GetRawJson(cityName).Select(w => new City(w)).SingleOrDefault();
+            return JArray.Parse(GetRawJson(cityName)).Select(w => new City(w)).SingleOrDefault();
         }
     }
 }

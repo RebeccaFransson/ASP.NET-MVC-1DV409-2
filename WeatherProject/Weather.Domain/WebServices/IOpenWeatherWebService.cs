@@ -8,7 +8,7 @@ namespace Weather.Domain.WebServices
 {
     public interface IOpenWeatherWebService
     {
-        IEnumerable<WeatherByDay> GetCityWeather(City city);
+        List<WeatherByDay> GetCityWeather(City city);
         City GetCity(string cityName);
     }
 }

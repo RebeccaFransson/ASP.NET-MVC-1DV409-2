@@ -42,13 +42,13 @@ th{
 }
 .day{
     background-color: #ffeb7c;
-    width: 50%;
+    width: 70px;
     float:left;
 }
 .night{
     background-color: #080d2c;
     color: white;
-    width: 50%;
+    width: 68px;
     float:left;
 }
 .weatherResult img{
