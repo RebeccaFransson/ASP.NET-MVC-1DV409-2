@@ -59,6 +59,7 @@
     <Compile Include="City.cs" />
     <Compile Include="DataModels\City.cs">
       <DependentUpon>ForecastModel.tt</DependentUpon>
+      <CustomToolNamespace>Weather.Domain</CustomToolNamespace>
     </Compile>
     <Compile Include="DataModels\ForecastModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -118,6 +119,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ForecastModel.edmx</DependentUpon>
       <LastGenOutput>ForecastModel.cs</LastGenOutput>
+      <CustomToolNamespace>Weather.Domain</CustomToolNamespace>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

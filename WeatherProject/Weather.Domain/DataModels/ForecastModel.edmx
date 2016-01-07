@@ -211,6 +211,7 @@
                   <ScalarProperty Name="Lon" ParameterName="Lon" />
                   <ScalarProperty Name="Lat" ParameterName="Lat" />
                   <ScalarProperty Name="Name" ParameterName="Name" />
+                  <ResultBinding Name="CityID" ColumnName="NewCityID" />
                 </InsertFunction>
                 <UpdateFunction FunctionName="dv409_rf222cz_weatherModel.Store.usp_City_Update">
                   <ScalarProperty Name="TimeStamp" ParameterName="TimeStamp" Version="Current" />
@@ -244,6 +245,7 @@
                   <ScalarProperty Name="TempNight" ParameterName="TempNight" />
                   <ScalarProperty Name="TempDay" ParameterName="TempDay" />
                   <ScalarProperty Name="CityID" ParameterName="CityID" />
+                  <ResultBinding Name="WeatherID" ColumnName="NewWeatherID" />
                 </InsertFunction>
                 <UpdateFunction FunctionName="dv409_rf222cz_weatherModel.Store.usp_WeatherByDay_Update">
                   <ScalarProperty Name="WeatherIcon" ParameterName="WeatherIcon" Version="Current" />

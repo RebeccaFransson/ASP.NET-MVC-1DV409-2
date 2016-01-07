@@ -15,6 +15,7 @@ namespace Weather.Domain
             Name = cityToken["city"]["name"].ToString();
             Lon = float.Parse(cityToken["city"]["coord"]["lon"].ToString());
             Lat = float.Parse(cityToken["city"]["coord"]["lat"].ToString());
+            TimeStamp = DateTime.Now;
         }
 
 
