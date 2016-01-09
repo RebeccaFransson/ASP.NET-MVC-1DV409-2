@@ -27,27 +27,20 @@ namespace Weather.Domain.WebServices
 
             var requestUriString = String.Format("http://api.openweathermap.org/data/2.5/forecast/daily?q={0}&mode=json&units=metric&cnt=5&appid=2de143494c0b295cca9337e1e96b00e0", name);
             var request = (HttpWebRequest)WebRequest.Create(requestUriString);
-            //request.Headers.Add("Authorization", String.Format("{0} {1}", accessToken.Type, accessToken.Token));
             request.Method = "GET";
 
             using (var response = request.GetResponse())
             using (var reader = new StreamReader(response.GetResponseStream()))
             {
                 rawJson = "[" + reader.ReadToEnd() + "]";
-                //rawJson = reader.ReadToEnd();
             }
             return rawJson;
         }
         public List<WeatherByDay> GetCityWeather(City city)
         {
-            //IEnumerable<WeatherByDay> weatherList = new IEnumerable<WeatherByDay>(5);
             List<WeatherByDay> weatherList = new List<WeatherByDay>(5);
-            //foreach(var day in w["list"].ToList())
-            //Eftersom JArray vill ha rawJson i en array lägger i den i en.
-            //var hej = GetRawJson(city.Name);
             var token = JArray.Parse(GetRawJson(city.Name))[0];
             var trendsArray = token.Children<JProperty>().FirstOrDefault(x => x.Name == "list").Value;
-            //trendsArray.Select(w => new WeatherByDay(w, city));
             foreach (var item in trendsArray.Children())
             {
                 weatherList.Add(new WeatherByDay(item, city));
@@ -57,6 +50,18 @@ namespace Weather.Domain.WebServices
 
         public City GetCity(string cityName)
         {
+            JArray cityInfo = JArray.Parse(GetRawJson(cityName));
+            if (cityInfo[0]["cod"].ToString() == "404")
+            {
+                //kunde inte hitta staden
+                int hej = 1;
+            }
+            if (cityInfo[0]["city"].ToString() != cityName)
+            {
+                //inte samma namn som inmatad    kan jag ha något som tempdata här också?
+                int hej = 1;
+            }
+            //menade du..?
             return JArray.Parse(GetRawJson(cityName)).Select(w => new City(w)).SingleOrDefault();
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Weather.Domain;
@@ -55,15 +56,7 @@ namespace Weather.MVC.Controllers
                         model.WeekDays.Add(days[daynr]);
                         daynr++;
                     }
-
-                    
                 }
-                /*
-                OpenWeatherWebService webbService = new OpenWeatherWebService();
-                IEnumerable<Domain.City> city = webbService.GetForecastByCity("malmö");
-
-                return View(city);
-                */
             }
             catch (Exception ex)
             {
@@ -72,8 +65,17 @@ namespace Weather.MVC.Controllers
                     ex = ex.InnerException;
                 }
                 ModelState.AddModelError(String.Empty, ex.Message);
+                TempData["error"] = String.Format("This city dosent exist. {0}", ex);
             }
             return View(model);
+        }
+
+
+
+        protected override void Dispose(bool disposing)
+        {
+            _service.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

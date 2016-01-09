@@ -5,7 +5,6 @@
 }
 
 <div class="inputCity">
-    <h1>Weather</h1>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -13,7 +12,14 @@
         @Html.LabelFor(model => model.CityName)
         @Html.EditorFor(model => model.CityName, new { htmlAttributes = new { @class = "form-control", maxlength = "50" } })
         @Html.ValidationMessageFor(model => model.CityName, String.Empty, new { @class = "text-danger" })
-        <input type="submit" value="send" />
+        <input class="button" type="submit" value="Get Weather" />
+        if (TempData["error"] != null)
+        {
+            <div class="alert-box success">
+                <a href="" class="close">×</a>
+                @TempData["error"]
+            </div>
+        }
     }
 
 </div>
@@ -37,9 +43,11 @@
                     <td>
                         <div class="weather">@Html.DisplayFor(modelItem => weather.Weather)</div>
                         <img src="~/Content/pictures/@Html.DisplayFor(modelItem => weather.WeatherIcon)" />
-                        <div class="day">@Html.DisplayFor(modelItem => weather.TempDay)°</div>
-                        <div class="night">@Html.DisplayFor(modelItem => weather.TempNight)°</div>
-                    </td>
+                        <div class="C">
+                            <div class="day">@Html.DisplayFor(modelItem => weather.TempDay)°</div>
+                            <div class="night">@Html.DisplayFor(modelItem => weather.TempNight)°</div>
+                        </div>
+</td>
                 }
             </tr>
         </table>
