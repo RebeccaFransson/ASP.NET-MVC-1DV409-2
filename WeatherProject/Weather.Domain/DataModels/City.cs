@@ -25,6 +25,7 @@ namespace Weather.Domain
         public double Lat { get; set; }
         public double Lon { get; set; }
         public System.DateTime TimeStamp { get; set; }
+        public string Country { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WeatherByDay> WeatherByDay { get; set; }

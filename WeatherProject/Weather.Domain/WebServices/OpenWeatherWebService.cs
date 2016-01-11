@@ -53,15 +53,8 @@ namespace Weather.Domain.WebServices
             JArray cityInfo = JArray.Parse(GetRawJson(cityName));
             if (cityInfo[0]["cod"].ToString() == "404")
             {
-                //kunde inte hitta staden
-                int hej = 1;
+                throw new FileNotFoundException();
             }
-            if (cityInfo[0]["city"].ToString() != cityName)
-            {
-                //inte samma namn som inmatad    kan jag ha något som tempdata här också?
-                int hej = 1;
-            }
-            //menade du..?
             return JArray.Parse(GetRawJson(cityName)).Select(w => new City(w)).SingleOrDefault();
         }
     }

@@ -91,7 +91,6 @@
     <Compile Include="City.cs" />
     <Compile Include="DataModels\City.cs">
       <DependentUpon>ForecastModel.tt</DependentUpon>
-      <CustomToolNamespace>Weather.Domain</CustomToolNamespace>
     </Compile>
     <Compile Include="DataModels\ForecastModel.Context.cs">
       <AutoGen>True</AutoGen>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -40,32 +41,34 @@ namespace Weather.MVC.Controllers
                 if (ModelState.IsValid)
                 {
                     model.WeekDays = new List<string>(5);
-
-                    model.City = _service.GetCity(model.CityName);
+                    string firstCityName = model.CityName;
+                    model.City = _service.GetCity(firstCityName);
                     _service.RefreshWeather(model.City);
+                    if(model.City.Name.ToLower() != firstCityName.ToLower())
+                    {
+                        TempData["error"] = String.Format("Coundnt find {0}, did you mean {1}?", firstCityName, model.City.Name);
+                    }
 
-
-                    string[] days = new string[7] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
-                    int daynr = Array.IndexOf(days, DateTime.Now.DayOfWeek.ToString());
+                    int daynr = (int)DateTime.Now.DayOfWeek;
                     while (model.WeekDays.Count() < 5)//antal dagar vi vill blicka framåt med
                     {
-                        if (daynr >= days.Count())
+                        if (daynr >= 7)//dagar i veckan
                         {
                             daynr = 0;
                         }
-                        model.WeekDays.Add(days[daynr]);
+                        model.WeekDays.Add(DateTime.Now.AddDays(model.WeekDays.Count()).DayOfWeek.ToString());
                         daynr++;
                     }
                 }
             }
+            catch (FileNotFoundException)
+            {
+                TempData["error"] = String.Format("This city dosent exist.");
+            }
             catch (Exception ex)
             {
-                while (ex.InnerException != null)
-                {
-                    ex = ex.InnerException;
-                }
-                ModelState.AddModelError(String.Empty, ex.Message);
-                TempData["error"] = String.Format("This city dosent exist. {0}", ex);
+                //throw new ApplicationException("An application exception occured.");
+                return View("SystemError");
             }
             return View(model);
         }

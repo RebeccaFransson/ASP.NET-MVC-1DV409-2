@@ -43,16 +43,15 @@ textarea {
 
  .inputCity{
      padding:60px;
+    height: 150px;
  }
  .inputCity label{
-     float: left;
+     float:left;
     font-size: 21px;
     padding-right: 12px;
  }
-#CityName{
-     float: left;
-     font-size:20px;
-     width :150px;
+  .inputCity input{
+    float:left;
  }
  .inputCity .button{
     float: left;
@@ -64,8 +63,14 @@ textarea {
     border: none;
  }
  .inputCity span{
-     font-size:22px;
+    font-size:16px;
     padding-left: 8px;
+ }
+ .success{
+    background-color: #FFF4D1;
+    padding: 15px;
+    margin-top: 10px;
+    width: 36%;
  }
 
 

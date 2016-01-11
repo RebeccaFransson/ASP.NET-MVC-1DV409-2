@@ -16,6 +16,7 @@ namespace Weather.Domain
             Lon = float.Parse(cityToken["city"]["coord"]["lon"].ToString());
             Lat = float.Parse(cityToken["city"]["coord"]["lat"].ToString());
             TimeStamp = DateTime.Now;
+            Country = cityToken["city"]["country"].ToString();
         }
     }
 }
