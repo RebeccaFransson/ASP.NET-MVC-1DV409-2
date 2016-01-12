@@ -40,8 +40,7 @@ namespace Weather.Domain
         public override void RefreshWeather(City city)
         {
             //om det inte finns några väder eller om värderna är äldre än tidsstämplen
-            //if (!city.WeatherByDay.Any() || city.TimeStamp < DateTime.Now)
-            if (true)
+            if (!city.WeatherByDay.Any() || city.TimeStamp < DateTime.Now)
                 {
                 //tabort vädret om det är för gammalt!
                 foreach(var weather in city.WeatherByDay.ToList())

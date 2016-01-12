@@ -13,10 +13,6 @@ namespace Weather.Domain.Repositories
         private readonly ForecastEntities _context = new ForecastEntities();
 
         //WEATHER
-        protected override IQueryable<WeatherByDay> QueryWeather()
-        {
-            return _context.WeatherByDay.AsQueryable();
-        }
         public override void AddWeather(WeatherByDay weather)
         {
             _context.WeatherByDay.Add(weather);
@@ -25,10 +21,6 @@ namespace Weather.Domain.Repositories
         {
             WeatherByDay weather = _context.WeatherByDay.Find(id);
             _context.WeatherByDay.Remove(weather);
-        }
-        public override void UpdateWeather(WeatherByDay weather)
-        {
-            _context.Entry(weather).State = EntityState.Modified;
         }
 
 
@@ -41,15 +33,7 @@ namespace Weather.Domain.Repositories
         {
             _context.City.Add(city);
         }
-        public override void DeleteCity(int id)
-        {
-            City city = _context.City.Find(id);
-            _context.City.Remove(city);
-        }
-        public override void UpdateCity(City city)
-        {
-            _context.Entry(city).State = EntityState.Modified;
-        }
+        
 
         public override void Save()
         {

@@ -29,7 +29,7 @@
 
     @if (Model != null && Model.HasWeather)
     {
-        <h2>@Html.DisplayFor(model => model.City.Name)@Html.DisplayFor(model => model.City.Country)</h2>
+        <h2>@Html.DisplayFor(model => model.City.Name), @Html.DisplayFor(model => model.City.Country)</h2>
         <table style="width:100%">
             <tr>
                 @foreach (var day in Model.WeekDays)
