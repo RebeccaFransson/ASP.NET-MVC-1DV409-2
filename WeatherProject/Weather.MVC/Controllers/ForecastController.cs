@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using Weather.Domain;
-using Weather.Domain.WebServices;
 using Weather.MVC.ViewModels;
 
 namespace Weather.MVC.Controllers
@@ -67,7 +64,6 @@ namespace Weather.MVC.Controllers
             }
             catch (Exception ex)
             {
-                //throw new ApplicationException("An application exception occured.");
                 return View("SystemError");
             }
             return View(model);
